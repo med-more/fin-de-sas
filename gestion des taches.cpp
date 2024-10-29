@@ -116,6 +116,22 @@ int main(){
 					afficher(taches[i]); //affichage de l'index i dans tableau taches[]
 				}	
         	break;
+        	
+        	case 3;
+        		int index; 
+        		if(nbr_tache==0){ //condition pour verification de tache exist ou non 
+        			printf("pas de tache pour afficher");
+				}
+					printf("entrer l'index pour afficher :");
+					scanf("%d", &index);
+					if(index>=0 && index<=nbr_tache){ //condition pour verifier if index a modifier exist ou non 
+						edit(taches, index);
+					}
+					else{
+						printf("pas de tache a modifier");
+					}
+				
+        	break;
 		}
 	}while(choix<6)
 }
