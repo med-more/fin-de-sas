@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define max 50 
+
 
 
 typedef struct{  //structure de date de creation de tache 
@@ -79,4 +81,10 @@ void edit(tache ta[], int index){
 
         printf("entrer le nouveu priorite :");
         scanf("%d", &ta[index].priorite);
+}
+
+int main(){
+	int choix;
+	tache taches[max];
+	int nbr_tache=0;
 }
