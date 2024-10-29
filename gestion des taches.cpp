@@ -99,5 +99,11 @@ int main(){
         printf("votre choix :");
         scanf("%d", choix);
         
+        switch(choix){
+        	case 1:
+        		taches[nbr_tache]=add(); //ajout d'une nouvelle tache dans le tableau taches en fonction de la fonction add
+        		nbr_tache++; //incrementation des nbr de taches
+        	break;
+		}
 	}while(choix<6)
 }
