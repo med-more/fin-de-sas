@@ -83,6 +83,14 @@ void edit(tache ta[], int index){
         scanf("%d", &ta[index].priorite);
 }
 
+//fonction de suppression d'une tache 
+void delet(tache taches[], int nbr_tache, int index){
+	for(int i=index; i<(nbr_tache)-1; i++){
+		taches[i]=taches[i+1]; //tache 4 suppreimer la tache 5 ghatwlli f case 4 
+	}
+		nbr_tache--; 
+}
+
 int main(){
 	int choix;
 	tache taches[max];
@@ -112,26 +120,47 @@ int main(){
 				}
 				else{
 					printf("entrer l'index pour afficher :");
-					scanf("%d" &i);
+					scanf("%d" ,&i);
 					afficher(taches[i]); //affichage de l'index i dans tableau taches[]
 				}	
         	break;
         	
-        	case 3;
+        	case 3:
         		int index; 
         		if(nbr_tache==0){ //condition pour verification de tache exist ou non 
         			printf("pas de tache pour afficher");
 				}
-					printf("entrer l'index pour afficher :");
-					scanf("%d", &index);
+					printf("entrer l'index pour modifier :");
+				    scanf("%d", &index);
 					if(index>=0 && index<=nbr_tache){ //condition pour verifier if index a modifier exist ou non 
 						edit(taches, index);
 					}
+        	
 					else{
 						printf("pas de tache a modifier");
-					}
+					}	
+        	break;
 				
+        	case 4:
+        		if(nbr_tache==0){
+        			printf("pas de tache a supprimer");
+				}
+				else{
+					int index;
+					printf("entrer l'index de tache a supprimer :");
+					scanf("%d", &index);
+					if(index>=0 && index<nbr_tache){
+						delet(taches, nbr_tache, index);
+						printf("tache supprimer");
+					}
+					else{
+						printf("indice invalide");
+					}
+						
+				}
         	break;
 		}
-	}while(choix<6)
+	}while(choix<6);
+	
+	
 }
