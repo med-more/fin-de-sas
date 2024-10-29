@@ -87,4 +87,13 @@ int main(){
 	int choix;
 	tache taches[max];
 	int nbr_tache=0;
+	
+	do{
+		printf("\n********Menu********\n");
+        printf("1. Ajouter une tache\n");
+        printf("2. Afficher les taches\n");
+        printf("3. Modifier une tache\n");
+        printf("4. Supprimer une tache\n");
+        printf("6. Quitter\n");
+	}while(choix<6)
 }
