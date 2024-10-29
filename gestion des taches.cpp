@@ -97,12 +97,24 @@ int main(){
         printf("6. Quitter\n");
         
         printf("votre choix :");
-        scanf("%d", choix);
+        scanf("%d", &choix);
         
         switch(choix){
         	case 1:
         		taches[nbr_tache]=add(); //ajout d'une nouvelle tache dans le tableau taches en fonction de la fonction add
         		nbr_tache++; //incrementation des nbr de taches
+        	break;
+        	
+        	case 2:
+        		int i;
+        		if(nbr_tache==0){ //condition pour verification de tache exist ou non 
+        			printf("pas de tache pour afficher");
+				}
+				else{
+					printf("entrer l'index pour afficher :");
+					scanf("%d" &i);
+					afficher(taches[i]); //affichage de l'index i dans tableau taches[]
+				}	
         	break;
 		}
 	}while(choix<6)
