@@ -45,3 +45,13 @@ tache add(){
 	
 	return ta;
 }
+
+//fonction pour affichge des taches
+void afficher(tache ta){
+	printf("----------------------- Informations de %s ----------------------\n", ta.titre);
+	printf("\n Titre : %s\n", ta.titre);
+    printf("\n description : %s\n", ta.description);
+    printf("\n----date de creation----\n");
+    printf("\n %d / %d / %d \n", ta.dates.jour,  ta.dates.mois,  ta.dates.annee);
+    printf("\n priorite : %s\n", ta.priorite? "Hight" : "Low"); //hight::true  low::false
+}
