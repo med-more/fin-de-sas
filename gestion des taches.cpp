@@ -95,5 +95,9 @@ int main(){
         printf("3. Modifier une tache\n");
         printf("4. Supprimer une tache\n");
         printf("6. Quitter\n");
+        
+        printf("votre choix :");
+        scanf("%d", choix);
+        
 	}while(choix<6)
 }
