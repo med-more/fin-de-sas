@@ -55,3 +55,28 @@ void afficher(tache ta){
     printf("\n %d / %d / %d \n", ta.dates.jour,  ta.dates.mois,  ta.dates.annee);
     printf("\n priorite : %s\n", ta.priorite? "Hight" : "Low"); //hight::true  low::false
 }
+
+//fonction pour modifier une tache
+void edit(tache ta[], int index){
+	printf("modifier les information de : %s \n", ta[index].titre);
+
+        printf("entrer le nouveu titre :");
+        scanf("%s", &ta[index].titre);
+
+        printf("entrer le nouveu description :");
+        scanf("%s", &ta[index].description);
+
+        printf("modifier la date de creation \n");
+        
+        printf("entrer la nouvelle jour : ");
+        scanf("%d", &ta[index].dates.jour);
+        
+        printf("entrer la nouvelle mois : ");
+        scanf("%d", &ta[index].dates.mois);
+        
+        printf("entrer la nouvelle annee : ");
+        scanf("%d", &ta[index].dates.annee);
+
+        printf("entrer le nouveu priorite :");
+        scanf("%d", &ta[index].priorite);
+}
