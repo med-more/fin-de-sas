@@ -50,7 +50,7 @@ tache add(){
 
 //fonction pour affichge des taches
 void afficher(tache ta){
-	printf("----------------------- Informations de %s ----------------------\n", ta.titre);
+	printf("\n----------------------- Informations de %s ----------------------\n", ta.titre);
 	printf("\n Titre : %s\n", ta.titre);
     printf("\n description : %s\n", ta.description);
     printf("\n----date de creation----\n");
@@ -87,8 +87,17 @@ void edit(tache ta[], int index){
 void delet(tache taches[], int nbr_tache, int index){
 	for(int i=index; i<(nbr_tache)-1; i++){
 		taches[i]=taches[i+1]; //tache 4 suppreimer la tache 5 ghatwlli f case 4 
+	} 
+}
+
+//fonction de filtrage par priorite
+void fp(tache taches[], int nbr_tache, int pr){
+	printf("Les taches avec la priorite : %s \n", pr ? "Hight" : "Low");
+	for(int i=0; i<nbr_tache; i++){
+		if(taches[i].priorite==pr){
+			afficher(taches[i]);
+		}
 	}
-		nbr_tache--; 
 }
 
 int main(){
@@ -97,11 +106,13 @@ int main(){
 	int nbr_tache=0;
 	
 	do{
+		
 		printf("\n********Menu********\n");
         printf("1. Ajouter une tache\n");
         printf("2. Afficher les taches\n");
         printf("3. Modifier une tache\n");
         printf("4. Supprimer une tache\n");
+        printf("5. filtrer une tache\n");
         printf("6. Quitter\n");
         
         printf("votre choix :");
@@ -151,16 +162,30 @@ int main(){
 					scanf("%d", &index);
 					if(index>=0 && index<nbr_tache){
 						delet(taches, nbr_tache, index);
+						nbr_tache--;
 						printf("tache supprimer");
-					}
+				}
 					else{
 						printf("indice invalide");
-					}
-						
+					}		
 				}
         	break;
+        	
+        	case 5:
+        		int pr;
+        		if(nbr_tache == 0){	
+					printf("pas de tache a filtrer");
+				}
+				else{
+				printf("Entrez la priorite (1 pour High, 0 pour Low) : ");
+        		scanf("%d", &pr);
+        		fp(taches,  nbr_tache,  pr);
+				}	
+        	break;
+        	default:
+        		printf("choix non valider");
 		}
-	}while(choix<6);
+	}while(choix!=6);
 	
-	
+	return 0;
 }
