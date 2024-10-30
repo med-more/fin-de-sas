@@ -26,10 +26,10 @@ tache add(){
 	tache ta; //objet jdid de type tache
 	
 	printf("entrer le titre de tache :");
-	scanf("%s", &ta.titre);
+	scanf(" %[^\n]%*c", &ta.titre);
 	
 	printf("entrer la description de tache :");
-	scanf("%s", &ta.description);
+	scanf(" %[^\n]%*c", &ta.description);
 	
 	printf("entrer la date de tache\n");
 	
@@ -63,10 +63,10 @@ void edit(tache ta[], int index){
 	printf("modifier les information de : %s \n", ta[index].titre);
 
         printf("entrer le nouveu titre :");
-        scanf("%s", &ta[index].titre);
+        scanf(" %[^\n]%*c", &ta[index].titre);
 
         printf("entrer le nouveu description :");
-        scanf("%s", &ta[index].description);
+        scanf(" %[^\n]%*c", &ta[index].description);
 
         printf("modifier la date de creation \n");
         
@@ -92,7 +92,7 @@ void delet(tache taches[], int nbr_tache, int index){
 
 //fonction de filtrage par priorite
 void fp(tache taches[], int nbr_tache, int pr){
-	printf("Les taches avec la priorite : %s \n", pr ? "Hight" : "Low");
+	printf("La tache avec priorite : %s", pr ? "Hight" : "Low");
 	for(int i=0; i<nbr_tache; i++){
 		if(taches[i].priorite==pr){
 			afficher(taches[i]);
@@ -141,6 +141,7 @@ int main(){
         		if(nbr_tache==0){ //condition pour verification de tache exist ou non 
         			printf("pas de tache pour afficher");
 				}
+					printf("\n +++++++++++++ vous avez %d taches +++++++++++++ \n", nbr_tache); 
 					printf("entrer l'index pour modifier :");
 				    scanf("%d", &index);
 					if(index>=0 && index<=nbr_tache){ //condition pour verifier if index a modifier exist ou non 
