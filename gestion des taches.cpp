@@ -33,7 +33,7 @@ tache add(){
 	
 	printf("entrer la date de tache\n");
 	
-	printf("jour :");!
+	printf("jour :");
 	scanf("%d", &ta.dates.jour);
 	
 	printf("mois :");
@@ -50,7 +50,7 @@ tache add(){
 
 //fonction pour affichge des taches
 void afficher(tache ta){
-	printf("\n----------------------- Informations de %s ----------------------\n", ta.titre);
+	printf("\n---------------------- Informations de %s ----------------------\n", ta.titre);
 	printf("\n Titre : %s\n", ta.titre);
     printf("\n description : %s\n", ta.description);
     printf("\n----date de creation----\n");
@@ -59,28 +59,41 @@ void afficher(tache ta){
 }
 
 //fonction pour modifier une tache
-void edit(tache ta[], int index){
+void edit(tache ta[], int index, int s){
 	printf("modifier les information de : %s \n", ta[index].titre);
 
-        printf("entrer le nouveu titre :");
-        scanf(" %[^\n]%*c", &ta[index].titre);
+         switch(s){
+        	case 1:
+		        printf("entrer le nouveu titre :");
+		        scanf(" %[^\n]%*c", &ta[index].titre);
+		    break;
+            case 2:
+		        printf("entrer le nouveu description :");
+		        scanf(" %[^\n]%*c", &ta[index].description);
+		    break;
 
-        printf("entrer le nouveu description :");
-        scanf(" %[^\n]%*c", &ta[index].description);
-
-        printf("modifier la date de creation \n");
+        		printf("modifier la date de creation \n");
         
-        printf("entrer la nouvelle jour : ");
-        scanf("%d", &ta[index].dates.jour);
-        
-        printf("entrer la nouvelle mois : ");
-        scanf("%d", &ta[index].dates.mois);
-        
-        printf("entrer la nouvelle annee : ");
-        scanf("%d", &ta[index].dates.annee);
-
-        printf("entrer le nouveu priorite :");
-        scanf("%d", &ta[index].priorite);
+           case 3:
+		        printf("entrer la nouvelle jour : ");
+		        scanf("%d", &ta[index].dates.jour);
+		    break;
+		    
+		    case 4:
+		        printf("entrer la nouvelle mois : ");
+		        scanf("%d", &ta[index].dates.mois);
+		    break;
+            case 5:
+		        printf("entrer la nouvelle annee : ");
+		        scanf("%d", &ta[index].dates.annee);
+		    break;
+            case 6:
+		        printf("entrer le nouveu priorite :");
+		        scanf("%d", &ta[index].priorite);
+		    break;
+		    default:
+		    	printf("choix invalide");
+		}
 }
 
 //fonction de suppression d'une tache 
@@ -132,26 +145,86 @@ int main(){
 				else{
 					printf("entrer l'index pour afficher :");
 					scanf("%d" ,&i);
+					printf("\n-------------------------- Tache %d -----------------------------\n", i+1);//affiche de nbr des taches
 					afficher(taches[i]); //affichage de l'index i dans tableau taches[]
 				}	
         	break;
         	
         	case 3:
         		int index; 
-        		if(nbr_tache==0){ //condition pour verification de tache exist ou non 
-        			printf("pas de tache pour afficher");
-				}
-					printf("\n +++++++++++++ vous avez %d taches +++++++++++++ \n", nbr_tache); 
-					printf("entrer l'index pour modifier :");
-				    scanf("%d", &index);
-					if(index>=0 && index<=nbr_tache){ //condition pour verifier if index a modifier exist ou non 
-						edit(taches, index);
-					}
+        		int s,el; //s pour modifier seul element et el pour modifier tous
+        		printf("\n +++++++++++++ vous avez %d taches +++++++++++++ \n", nbr_tache); 
+        		printf("\n********Menu********\n");
+        		printf("1. Modifier un seule element\n");
+		        printf("2. Modifier les detailles\n");
+		        
+		        printf("Votre choix :");
+		        scanf("%d", &s);
+		        
+		    switch(s){
+		        case 1:
+				        printf("\n********Menu********\n");
+				        printf("1. Modifier tittre\n");
+				        printf("2. Modifier description\n");
+				        printf("3. Modifier jour\n");
+				        printf("4. Modifier Mois\n");
+				        printf("5. Modifier annee\n");
+				        printf("6. Modifier priorite\n");
+				        
+				        
+		        		printf("entrer l'element a modifier :");
+		        		scanf("%d", &el);
+		        		
+		        		if(nbr_tache==0){ //condition pour verification de tache exist ou non 
+        						printf("pas de tache pour afficher");
+						}
+							
+							printf("entrer l'index pour modifier :");
+				    		scanf("%d", &index);
+				    		
+					    if(index>=0 && index<=nbr_tache){ //condition pour verifier if index a modifier exist ou non 
+								edit(taches, index, el);
+				        }
         	
 					else{
 						printf("pas de tache a modifier");
 					}	
-        	break;
+        		break;
+        		
+        		case 2:
+        			printf("entrer l'index pour modifier :");
+				    scanf("%d", &index);
+				    
+	        		printf("entrer le nouveu titre :");
+			        scanf("%s", &taches[index].titre);
+			    
+	            
+			        printf("entrer le nouveu description :");
+			        scanf("%s", &taches[index].description);
+			    
+	
+	        		printf("modifier la date de creation \n");
+	        
+	           
+			        printf("entrer la nouvelle jour : ");
+			        scanf("%d", &taches[index].dates.jour);
+			   
+			    
+			    
+			        printf("entrer la nouvelle mois : ");
+			        scanf("%d", &taches[index].dates.mois);
+			    
+			        printf("entrer la nouvelle annee : ");
+			        scanf("%d", &taches[index].dates.annee);
+			  
+			        printf("entrer le nouveu priorite :");
+			        scanf("%d", &taches[index].priorite);
+        		break;
+        	}	
+		    break;
+	    
+        		
+        		
 				
         	case 4:
         		if(nbr_tache==0){
