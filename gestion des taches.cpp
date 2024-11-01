@@ -18,6 +18,7 @@ typedef struct{  // structure de tache
 	char description[100];
 	date_echeance dates;
 	int priorite;
+	int status;
 }tache;
 
 
@@ -45,6 +46,9 @@ tache add(){
 	printf("entrer la priorite de tache (0 low / 1 hight) :");
 	scanf("%d", &ta.priorite);
 	
+	printf("entrer la status de tache (0 incomplete / 1 complet) :");
+	scanf("%d", &ta.status);
+	
 	return ta;
 }
 
@@ -56,6 +60,7 @@ void afficher(tache ta){
     printf("\n----date de creation----\n");
     printf("\n %d / %d / %d \n", ta.dates.jour,  ta.dates.mois,  ta.dates.annee);
     printf("\n priorite : %s\n", ta.priorite? "Hight" : "Low"); //hight::true  low::false
+    printf("\n status : %s\n", ta.status? "complet" : "incomplete"); //complet::true  incomplete::false
 }
 
 //fonction pour modifier une tache
@@ -91,6 +96,11 @@ void edit(tache ta[], int index, int s){
 		        printf("entrer le nouveu priorite :");
 		        scanf("%d", &ta[index].priorite);
 		    break;
+		    
+		    case 7:
+		        printf("entrer le nouveu status :");
+		        scanf("%d", &ta[index].status);
+		    break;
 		    default:
 		    	printf("choix invalide");
 		}
@@ -105,9 +115,19 @@ void delet(tache taches[], int nbr_tache, int index){
 
 //fonction de filtrage par priorite
 void fp(tache taches[], int nbr_tache, int pr){
-	printf("La tache avec priorite : %s", pr ? "Hight" : "Low");
+	printf("Les taches avec priorite : %s \n", pr ? "Hight" : "Low");
 	for(int i=0; i<nbr_tache; i++){
-		if(taches[i].priorite==pr){
+		if(taches[i].priorite == pr){
+			afficher(taches[i]);
+		}
+	}
+}
+
+//fonction de filtrage par status
+void status(tache taches[], int nbr_tache, int st){
+	printf("Les taches avec status : %s \n", st ? "Complet" : "incomplete");
+	for(int i=0; i<nbr_tache; i++){
+		if(taches[i].priorite == st){
 			afficher(taches[i]);
 		}
 	}
@@ -126,7 +146,8 @@ int main(){
         printf("3. Modifier une tache\n");
         printf("4. Supprimer une tache\n");
         printf("5. filtrer une tache\n");
-        printf("6. Quitter\n");
+        printf("6. filtrer par status\n");
+        printf("7. Quitter\n");
         
         printf("votre choix :");
         scanf("%d", &choix);
@@ -152,24 +173,25 @@ int main(){
         	
         	case 3:
         		int index; 
-        		int s,el; //s pour modifier seul element et el pour modifier tous
+        		int s,el; 
         		printf("\n +++++++++++++ vous avez %d taches +++++++++++++ \n", nbr_tache); 
         		printf("\n********Menu********\n");
         		printf("1. Modifier un seule element\n");
-		        printf("2. Modifier les detailles\n");
+		        printf("2. Modifier Tous les detailles\n");
 		        
 		        printf("Votre choix :");
 		        scanf("%d", &s);
 		        
 		    switch(s){
 		        case 1:
-				        printf("\n********Menu********\n");
+				        printf("\n********Menu de modification********\n");
 				        printf("1. Modifier tittre\n");
 				        printf("2. Modifier description\n");
 				        printf("3. Modifier jour\n");
 				        printf("4. Modifier Mois\n");
 				        printf("5. Modifier annee\n");
 				        printf("6. Modifier priorite\n");
+				        printf("7. Modifier status\n");
 				        
 				        
 		        		printf("entrer l'element a modifier :");
@@ -219,6 +241,9 @@ int main(){
 			  
 			        printf("entrer le nouveu priorite :");
 			        scanf("%d", &taches[index].priorite);
+			        
+			        printf("entrer le nouveu status :");
+			        scanf("%d", &taches[index].status);
         		break;
         	}	
 		    break;
@@ -256,10 +281,22 @@ int main(){
         		fp(taches,  nbr_tache,  pr);
 				}	
         	break;
+        	
+        	case 6:
+        		int st;
+        		if(nbr_tache == 0){	
+					printf("pas de tache a filtrer");
+				}
+				else{
+				printf("Entrez la statut (1 pour complet , 0 pour incomplete) : ");
+        		scanf("%d", &st);
+        		fp(taches,  nbr_tache,  st);
+				}	
+        	break;
         	default:
         		printf("choix non valider");
 		}
-	}while(choix!=6);
+	}while(choix!=7);
 	
 	return 0;
 }
