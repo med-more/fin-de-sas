@@ -43,8 +43,11 @@ tache add(){
 	printf("annee :");
 	scanf("%d", &ta.dates.annee);
 	
-	printf("entrer la priorite de tache (0 low / 1 hight) :");
-	scanf("%d", &ta.priorite);
+	do{
+		printf("entrer la priorite de tache (0 low / 1 hight) :");
+		scanf("%d", &ta.priorite);
+	}while(ta.priorite!=0 && ta.priorite!=1);
+	
 	
 	printf("entrer la status de tache (0 incomplete / 1 complet) :");
 	scanf("%d", &ta.status);
@@ -93,8 +96,10 @@ void edit(tache ta[], int index, int s){
 		        scanf("%d", &ta[index].dates.annee);
 		    break;
             case 6:
-		        printf("entrer le nouveu priorite :");
-		        scanf("%d", &ta[index].priorite);
+		        	do{
+						printf("entrer la priorite de tache (0 low / 1 hight) :");
+						scanf("%d", &ta[index].priorite);
+					}while(ta[index].priorite!=0 && ta[index].priorite!=1);
 		    break;
 		    
 		    case 7:
@@ -239,10 +244,12 @@ int main(){
 			        printf("entrer la nouvelle annee : ");
 			        scanf("%d", &taches[index].dates.annee);
 			  
-			        printf("entrer le nouveu priorite :");
-			        scanf("%d", &taches[index].priorite);
+			        do{
+						printf("entrer la priorite de tache (0 low / 1 hight) :");
+						scanf("%d", &taches[index].priorite);
+					}while(taches[index].priorite!=0 && taches[index].priorite!=1);
 			        
-			        printf("entrer le nouveu status :");
+			        printf("entrer le nouveu status (0 incomplete / 1 complet) :");
 			        scanf("%d", &taches[index].status);
         		break;
         	}	
