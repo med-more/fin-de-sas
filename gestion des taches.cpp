@@ -32,7 +32,7 @@ int valide(int jour, int mois, int annee) {
     return 1; 
 }
 
-//fonction ajouter nouvelle tache 
+//fonction ajouter nouvelle tache
 tache add() {
     tache ta; // Objet jdid de type tache
 
@@ -60,8 +60,10 @@ tache add() {
         scanf("%d", &ta.priorite);
     } while (ta.priorite != 0 && ta.priorite != 1);
 
-    printf("Entrer le status de tache (0 incomplete / 1 complet) : ");
-    scanf("%d", &ta.status);
+    do {
+        printf("Entrer la status de tache (0 incomplete / 1 complet) : ");
+        scanf("%d", &ta.status);
+    } while (ta.status != 0 && ta.status != 1);
 
     return ta;
 }
@@ -109,8 +111,10 @@ void edit(tache ta[], int index, int s) {
             } while (ta[index].priorite != 0 && ta[index].priorite != 1);
             break;
         case 5:
-            printf("Entrer le nouveau status : ");
-            scanf("%d", &ta[index].status);
+            do {
+                printf("Valeur invalide. Entrer la status de tache (0 incomplete / 1 complet) : ");
+                scanf("%d", &ta[index].status);
+            } while (ta[index].status != 0 && ta[index].status != 1);
             break;
         default:
             printf("Choix invalide\n");
