@@ -124,7 +124,7 @@ void edit(tache ta[], int index, int s) {
 // Function pour supprimmer tache
 void delet(tache taches[], int nbr_tache, int index) {
     for (int i = index; i < nbr_tache - 1; i++) {
-        taches[i] = taches[i + 1]; // Shift tasks left
+        taches[i] = taches[i + 1]; 
     }
 }
 
@@ -133,6 +133,16 @@ void fp(tache taches[], int nbr_tache, int pr) {
     printf("Les taches avec priorite : %s\n", pr ? "High" : "Low");
     for (int i = 0; i < nbr_tache; i++) {
         if (taches[i].priorite == pr) {
+            afficher(taches[i]);
+        }
+    }
+}
+
+// Function pour filtrer par status
+void status(tache taches[], int nbr_tache, int st) {
+    printf("Les taches avec status : %s\n", pr ? "complet" : "incomplete");
+    for (int i = 0; i < nbr_tache; i++) {
+        if (taches[i].priorite == st) {
             afficher(taches[i]);
         }
     }
