@@ -140,12 +140,20 @@ void fp(tache taches[], int nbr_tache, int pr) {
 
 // Function pour filtrer par status
 void status(tache taches[], int nbr_tache, int st) {
-    printf("Les taches avec status : %s\n", pr ? "complet" : "incomplete");
+    printf("Les taches avec status : %s\n", st ? "complet" : "incomplete");
     for (int i = 0; i < nbr_tache; i++) {
         if (taches[i].priorite == st) {
             afficher(taches[i]);
         }
     }
+}
+
+//fonction pour validation de suppression
+int confirm(tache taches[], int index){
+    int v;
+    printf("voulez vous supprimer cette tache ? (1 oui// 0 non) :");
+    scanf("%d", &v);
+    return v;
 }
 
 
@@ -215,12 +223,20 @@ int main() {
                     printf("Pas de tache a supprimer\n");
                 } else {
                     int index;
+                    int v;
                     printf("Entrer l'index de tache a supprimer : ");
                     scanf("%d", &index);
                     if (index >= 0 && index < nbr_tache) {
-                        delet(taches, nbr_tache, index);
-                        nbr_tache--;
-                        printf("Tache supprimee\n");
+                        if (confirm(taches, index))
+                        {
+                            delet(taches, nbr_tache, index);
+                            nbr_tache--;
+                            printf("Tache supprimee\n");
+                        }
+                        else
+                        {
+                            printf("supression anuller");
+                        }   
                     } else {
                         printf("Indice invalide\n");
                     }
