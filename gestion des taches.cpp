@@ -162,6 +162,7 @@ int main() {
         printf("3. Modifier une tache\n");
         printf("4. Supprimer une tache\n");
         printf("5. Filtrer par priorite\n");
+        printf("5. Filtrer par status\n");
         printf("7. Quitter\n");
         printf("Votre choix : ");
         scanf("%d", &choix);
@@ -233,12 +234,24 @@ int main() {
                 } else {
                     printf("Entrer la priorite pour filtrer (0 Low / 1 High) : ");
                     scanf("%d", &pr);
-                    fp(taches, nbr_tache, pr); // Call filter function
+                    fp(taches, nbr_tache, pr); 
                 }
                 break;
             }
 
-            case 6:
+             case 6: {
+                int st;
+                if (nbr_tache == 0) {
+                    printf("Pas de tache pour filtrer\n");
+                } else {
+                    printf("Entrer la status pour filtrer (1 complete / 0 incomplete) : ");
+                    scanf("%d", &st);
+                    fp(taches, nbr_tache, st); 
+                }
+                break;
+            }
+
+            case 7:
                 printf("Au revoir!\n");
                 break;
 
